@@ -1,7 +1,13 @@
 // NAVBAR
 
-.navbar-item img {
-  height: 50px;
-  width: 85px;
-  max-height: 50px;
+.dj-navbar-wrapper {
+  .navbar-brand {
+    margin-top: 10px;
+  }
+
+  .navbar-item img {
+    height: 50px;
+    width: 85px;
+    max-height: 50px;
+  }
 }
