@@ -14,7 +14,7 @@ def forum_list_view(request):
     :param request:
     :return:
     """
-    forum_list = Forum.objects.filter(is_hot=False).order_by("-is_created")
+    forum_list = Forum.objects.filter(is_hot=False).order_by("-is_modified")
     forum_list_sticky = Forum.objects.filter(is_hot=True).order_by("-is_created")[:1]
     template = 'app_forum/main/forum_list.html'
     paginator = Paginator(forum_list, 10)

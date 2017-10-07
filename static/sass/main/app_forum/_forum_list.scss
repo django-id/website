@@ -23,6 +23,48 @@
   padding-bottom: 5%;
   background-color: $dj-color-grey-light;
 
+  .dj-slack-box {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 100px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 20px 20px rgba(0,0,0,.08);
+    white-space: normal;
+    -webkit-transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+    -moz-transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+    transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+    color: #4B4F56;
+    margin-bottom: 30px;
+
+    &:hover {
+      box-shadow: 0 40px 40px rgba(0,0,0,.16);
+      transform: translate(0,-20px);
+      transition-delay: 0s !important;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+
+    .img-valign {
+      vertical-align: middle;
+      margin-bottom: 0.15em;
+    }
+
+    .text2 {
+      font-size: 16px;
+      color: #4B4F56;
+
+      &:hover {
+        color: $dj-color-green;
+      }
+    }
+  }
+
   .card {
       display: inline-block;
       position: relative;

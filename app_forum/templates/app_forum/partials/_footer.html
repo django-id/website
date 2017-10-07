@@ -1,13 +1,16 @@
+{% load staticfiles %}
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
+    <div class="content has-text-centered dj-footer-wrapper">
       <p>
         <strong>&copy; 2017 Django Indonesia</strong>
       </p>
       <p>
-        <a class="icon" href="https://github.com/jgthms/bulma">
-          <i class="fa fa-github"></i>
-        </a>
+        <ul>
+            <li><a href="https://www.facebook.com/groups/DjangoID/"><img src="{% static "img/icons8-facebook_filled.svg" %}"></a></li>
+            <li><a href="https://github.com/django-id/"><img src="{% static "img/icons8-github_filled.svg" %}"></a></li>
+            <li><a href="https://django-id.herokuapp.com/"><img src="{% static "img/icons8-slack_filled.svg" %}"></a></li>
+        </ul>
       </p>
     </div>
   </div>

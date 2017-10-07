@@ -68,13 +68,13 @@ class Forum(models.Model):
     )
 
     is_created = models.DateTimeField(
-        default=datetime.datetime.now,
+        auto_now_add=True,
         null=True,
         blank=True
     )
 
     is_modified = models.DateTimeField(
-        default=datetime.datetime.now,
+        auto_now=True,
         null=True,
         blank=True
     )

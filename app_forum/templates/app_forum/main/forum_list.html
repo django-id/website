@@ -1,5 +1,6 @@
 {% extends "app_forum/main/forum_base.html" %}
-{% block title %}Forum - Django Indonesia{% endblock %}
+{% block title %}Django Indonesia{% endblock %}
+{% load staticfiles %}
 {% load humanize %}
 {% block content %}
 
@@ -31,6 +32,18 @@
 
     <!-- Forum List -->
     <div class="dj-forum-list-wrapper">
+
+        <!-- SLACK JOIN -->
+        <div align="center">
+            <a href="https://django-id.herokuapp.com/">
+                <div class="dj-slack-box">
+                    <img src="{% static "img/icons8-slack.svg" %}" class="img-valign" />
+                    <span class="text2">Join #Slack Django Indonesia!</span>
+                </div>
+            </a>
+        </div>
+        <!-- EOL -->
+
         <!-- STICKY THREAD -->
         <div class="container-narrow-2">
             <div class="columns">

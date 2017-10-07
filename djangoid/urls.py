@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Main App
     url(r'^admin/', admin.site.urls),
-    url(r'^forum/', include('app_forum.urls')),
+    url(r'^', include('app_forum.urls')),
     url(r'^author/', include('app_author.urls')),
 
     # 3rd-party App
