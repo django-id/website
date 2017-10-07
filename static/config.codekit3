@@ -194,6 +194,14 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/img\/you-face.gif": {
+		"ft": 4194304,
+		"iS": 49543,
+		"oA": 0,
+		"oAP": "\/img\/you-face.gif",
+		"oF": 0,
+		"opt": 0
+		},
 	"\/sass\/base.scss": {
 		"aP": 1,
 		"bl": 1,

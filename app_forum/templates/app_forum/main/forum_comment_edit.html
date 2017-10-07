@@ -3,6 +3,7 @@
 {% load humanize %}
 {% load crispy_forms_tags %}
 {% load show_markdown %}
+{% load staticfiles %}
 {% block content %}
 {{ form.media }}
 
@@ -22,8 +23,13 @@
             </div>
             <div class="columns">
                 <div class="column is-narrow">
+                    {% if request.user.profile.profile_picture %}
                     <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ request.user.profile.profile_picture }}') no-repeat center center; background-size: cover;">
                     </div>
+                    {% else %}
+                    <div class="dj-author-avatar-rounded" style="background: url('{% static "img/you-face.gif" %}') no-repeat center center; background-size: cover;">
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="column">
                     <div>
