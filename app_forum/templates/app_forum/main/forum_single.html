@@ -67,7 +67,7 @@
                 <div class="columns">
                     <div class="column is-narrow">
                          {% if forum.forum_author.profile_picture %}
-                        <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ forum.forum_author.profile_picture }}') no-repeat center center; background-size: cover;"></div>
+                        <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ comment.comment_author.profile_picture }}') no-repeat center center; background-size: cover;"></div>
                         {% else %}
                         <div class="dj-author-avatar-rounded" style="background: url('{% static "img/you-face.gif" %}') no-repeat center center; background-size: cover;"></div>
                         {% endif %}
