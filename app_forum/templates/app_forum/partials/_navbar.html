@@ -1,0 +1,57 @@
+{% load account %}
+{% load socialaccount %}
+<div class="dj-navbar-wrapper">
+    <div class="container">
+        <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="http://bulma.io">
+                    <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+                </a>
+
+                <button class="button navbar-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item">
+                        {% if not request.user.is_authenticated %}
+                        <p class="control">
+                            <a class="button" href="{% provider_login_url "github" process="login" %}">
+                                <span class="icon">
+                                    <span class="typcn typcn-social-github"></span>
+                                </span>
+                                <span>Login with Github</span>
+                            </a>
+                        </p>
+                        {% else %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                Halo, {{ request.user.username }}
+                            </a>
+                            <div class="navbar-dropdown is-boxed">
+                                 <a class="navbar-item" href="{% url 'author_single' slug=request.user.username %}">
+                                    Lihat Profile
+                                </a>
+                                <a class="navbar-item" href="{% url 'author_edit' slug=request.user.username %}">
+                                    Edit Profile
+                                </a>
+                                <a class="navbar-item" href="{% url "forum_new" %}">
+                                    Buat Thread Baru
+                                </a>
+                                <hr class="navbar-divider">
+                                <div class="navbar-item">
+                                    Logout
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

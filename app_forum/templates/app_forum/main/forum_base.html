@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Include All Styles-->
+        {% include "app_forum/partials/_header.html" %}
+        <!--EOC-->
+
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <header>
+        <!--Include Navbar-->
+        {% include "app_forum/partials/_navbar.html" %}
+        <!--EOC-->
+    </header>
+
+    <body id="hl-body-wrapper">
+        <div id="content" class="site-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+
+    <footer class="footer">
+        <!--Include Footer-->
+        {% include "app_forum/partials/_footer.html" %}
+        <!--EOC-->
+    </footer>
+
+</html>

@@ -1,0 +1,49 @@
+{% extends "app_forum/main/forum_base.html" %}
+{% block title %} Edit Thread - Forum - Django Indonesia{% endblock %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load show_markdown %}
+{% block content %}
+{{ form.media }}
+
+    <!-- Include Doodle -->
+    {% include "app_forum/partials/_doodle.html" %}
+    <!--EOC-->
+
+    {% if request.user.is_authenticated %}
+    <div class="dj-forum-form-wrapper">
+        <div class="container-narrow">
+            <div class="columns">
+                <div class="column">
+                    <div align="center">
+                        <h3><b>~ EDIT COMMENT ~</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-narrow">
+                    <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ request.user.profile.profile_picture }}') no-repeat center center; background-size: cover;">
+                    </div>
+                </div>
+                <div class="column">
+                    <div>
+                        <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+                            <div class="field">
+                                <div class="control">
+                                    {{ form.comment_content|as_crispy_field|safe }}
+                                </div>
+                            </div>
+                            <br />
+                            <button class="button is-primary" type='submit'>Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h1>Login to reply</h1>
+    {% endif %}
+
+
+{% endblock %}

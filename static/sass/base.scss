@@ -1,0 +1,23 @@
+// BASE TO INCLUDE ALL SCSS FILES
+
+// PARTIALS
+@import "partials/global";
+@import "partials/colors";
+@import "partials/fonts";
+@import "partials/header";
+@import "partials/navbar";
+@import "partials/footer";
+@import "partials/pagination";
+
+
+// APP FORUM
+@import "main/app_forum/forum_edit";
+@import "main/app_forum/forum_list";
+@import "main/app_forum/forum_new";
+@import "main/app_forum/forum_single";
+
+// APP AUTHOR
+@import "main/app_author/author_single";
+@import "main/app_author/author_edit";
+@import "main/app_author/author_auth";
+

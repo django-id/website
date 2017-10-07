@@ -1,0 +1,56 @@
+// AUTHOR SINGLE
+
+.dj-author-single-wrapper {
+
+  .dj-author-single-info {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-bottom: 2px solid $dj-color-grey;
+
+    .dj-author-bio {
+      b {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      li {
+        display: inline-block;
+        padding-right: 10px;
+      }
+
+      p {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  .dj-author-single-activity-wrapper {
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    .dj-author-single-widget-wrapper {
+      .dj-author-activity-box {
+        border: 1px solid #ecf0f1;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #7f8c8d;
+        height: auto;
+
+        .dj-author-activity-box-meta {
+          padding: 10px 20px;
+          background: #ecf0f1;
+        }
+
+        .dj-author-activity-item {
+          padding: 20px;
+          border-bottom: 1px solid $dj-color-grey;
+
+          li {
+            padding-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+}

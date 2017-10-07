@@ -1,0 +1,96 @@
+{% extends "app_forum/main/forum_base.html" %}
+{% block title %} Member: {{ author.user }} - Django Indonesia{% endblock %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load show_markdown %}
+{% block content %}
+
+    <div class="dj-author-single-wrapper">
+
+        <!-- AUTHOR BASIC INFO -->
+        <div class="dj-author-single-info">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <div class="dj-author-avatar-big-rounded"
+                                     style="background: url('{{ request.META.HTTP_NAME }}/media/{{ author.profile_picture }}') no-repeat center center;
+                                             background-size: cover;">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="dj-author-bio">
+                        {% if author.profile_name %}
+                            <b>{{ author.profile_name }}</b>
+                            {% else %}
+                            <b>{{ author.user }}</b>
+                        {% endif %}
+                            <p><span class="typcn typcn-location-outline"></span>Origin: <strong>{{ author.profile_location }}</strong></p>
+                            <p>
+                                <a class="button is-dark" href="{{ author.profile_github }}">
+                                    <span class="icon is-small">
+                                        <span class="typcn typcn-social-github"></span>
+                                    </span>
+                                </a>
+                                <a class="button is-dark" href="mailto:{{ author.profile_email }}">
+                                    <span class="icon is-small">
+                                        <span class="typcn typcn-mail"></span>
+                                    </span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- EOL -->
+
+        <!-- Include Doodle -->
+        {% include "app_forum/partials/_doodle.html" %}
+        <!--EOC-->
+
+        <!-- AUTHOR ACTIVITIES -->
+        <div class="dj-author-single-activity-wrapper">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="dj-author-single-widget-wrapper">
+                            <div class="dj-author-activity-box">
+                                <div class="dj-author-activity-box-meta">
+                                    <span class="typcn typcn-pencil"></span> Threads dari <strong>{{ author.user }}</strong>
+                                </div>
+                                <div class="dj-author-activity-item">
+                                    <ul>
+                                        {% for author_forum in author_forum_list %}
+                                            <li><span class="typcn typcn-arrow-forward"></span> <a href="{% url "forum_single" pk=author_forum.pk %}">{{ author_forum.forum_title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="dj-author-single-widget-wrapper">
+                             <div class="dj-author-activity-box">
+                                <div class="dj-author-activity-box-meta">
+                                    <span class="typcn typcn-messages"></span> Comments dari <strong>{{ author.user }}</strong>
+                                </div>
+                                {% for author_forum in author_comments %}
+                                <div class="dj-author-activity-item">
+                                    <span><a href="{% url 'author_single' slug=author.slug %}">{{ author_forum.comment_author }}</a> left a reply on <a href="{% url 'forum_single' pk=author_forum.forum.id %}">{{ author_forum.forum.forum_title }}</a> {{ author_forum.created_date|naturaltime }}</span>
+                                    <p>{{ author_forum.comment_content|show_markdown|safe }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- EOL -->
+
+    </div>
+
+
+
+
+{% endblock %}

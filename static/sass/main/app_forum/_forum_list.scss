@@ -1,0 +1,99 @@
+// FORUM LIST
+
+.dj-hero-wrapper {
+
+  padding-top: 100px;
+  padding-bottom: 100px;
+  border-bottom: 2px solid $dj-color-grey;
+
+  .dj-hero-content {
+    text-align: center;
+
+    h2 {
+      padding-bottom: 30px;
+    }
+  }
+
+}
+
+
+.dj-forum-list-wrapper {
+
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: $dj-color-grey-light;
+
+  .card {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      background-color: white;
+      vertical-align: top;
+      text-align: left;
+      height: auto;
+      margin: 5px 20px 5px 20px;
+      box-shadow: 0 20px 20px rgba(0,0,0,.08);
+      white-space: normal;
+      -webkit-transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+      -moz-transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+      transition: all 250ms cubic-bezier(.02, .01, .47, 1);
+      color: #4B4F56;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+    &:hover {
+      box-shadow: 0 40px 40px rgba(0,0,0,.16);
+      transform: translate(0,-20px);
+      transition-delay: 0s !important;
+    }
+
+    .card-body {
+      position: relative;
+      clear: both;
+      float: left;
+      width: 100%;
+      overflow: visible;
+      padding: 20px;
+      z-index: 2;
+
+      h1 {
+        font-size: 18px;
+        line-height: 25px;
+      }
+
+      .dj-sticky-title {
+        color: $dj-color-green;
+      }
+
+      .typcn-flash {
+        color: $dj-color-yellow;
+      }
+
+      .dj-forum-category-ASK {
+        color: #f42;
+      }
+
+      .dj-forum-category-CHAT {
+        color: #9b59b6;
+      }
+
+      .dj-forum-category-TUTORIAL {
+        color: #f1c40f;
+      }
+
+      .dj-forum-category-NEWS {
+        color: #3498db;
+      }
+
+      .dj-forum-list-count {
+
+        p {
+          font-size: 34px;
+          color: #bdc3c7;
+        }
+
+      }
+    }
+  }
+}

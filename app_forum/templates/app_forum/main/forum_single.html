@@ -1,0 +1,135 @@
+{% extends "app_forum/main/forum_base.html" %}
+{% block title %} {{ forum.forum_title }} - Forum - Django Indonesia{% endblock %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% load show_markdown %}
+{% block content %}
+{{ form.media }}
+
+    <!-- FORUM HEADING, TITLE, AUTHOR -->
+    <div class="dj-forum-single-wrapper">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="dj-forum-single-heading">
+                        <h1>[{{ forum.forum_category }}] {{ forum.forum_title }}</h1>
+                        <div class="dj-forum-single-author-wrapper">
+                            <div class="dj-author-avatar-rounded"
+                                 style="background: url('{{ request.META.HTTP_NAME }}/media/{{ forum.forum_author.profile_picture }}') no-repeat center center;
+                                         background-size: cover;">
+                            </div>
+                        </div>
+                        <a href="{% url "author_single" slug=forum.forum_author.slug %}" class=""><span class="typcn typcn-user"></span> {{ forum.forum_author }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EOL -->
+
+    <!-- Include Doodle -->
+    {% include "app_forum/partials/_doodle.html" %}
+    <!-- EOL -->
+
+    <div class="dj-forum-single-body-wrapper">
+
+        <!-- FORUM CONTENT -->
+        <div class="dj-forum-single-content-wrapper">
+            <div class="container-narrow">
+                <div class="columns">
+                    <div class="column">
+                        <div class="dj-forum-single-box">
+                            <div class="dj-forum-single-box-meta">
+                                <ul>
+                                    <li><span class="typcn typcn-time"></span> {{ forum.is_created|naturaltime }}</li>
+                                    <li><span class="typcn typcn-tag"></span> {{ forum.forum_category }}</li>
+                                    <li><span class="typcn typcn-messages"></span> {{ forum.forum_comments.count }}</li>
+                                    <li class="float-right">{% if user.is_authenticated and request.user == forum.forum_author.user %}<a href="{% url "forum_edit" pk=forum.pk %}" data-toggle="tooltip" title="Edit Post"><span class="typcn typcn-pencil"></span></a>{% endif %}</li>
+                                </ul>
+                            </div>
+                            <div class="dj-forum-single-content">
+                                {{ forum.forum_content|show_markdown|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- EOL -->
+
+        <!-- FORUM COMMENTS -->
+        <div class="dj-forum-single-comments-wrapper">
+            <div class="container-narrow-2">
+                {% for comment in forum_comments %}
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ comment.comment_author.profile_picture }}') no-repeat center center; background-size: cover;">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="dj-forum-single-box-comment">
+                            <div class="dj-forum-single-box-meta-comment">
+                                <ul>
+                                    <li><span class="typcn typcn-user"></span> <a href="{% url 'author_single' slug=comment.comment_author.slug %}">{{ comment.comment_author }}</a></li>
+                                    <li><span class="typcn typcn-time"></span>created: {{ comment.is_created|naturaltime }}</li>
+                                    <li><span class="typcn typcn-edit"></span>modified: {{ comment.is_modified|naturaltime }}</li>
+                                    <li class="float-right">{% if user.is_authenticated and request.user == comment.comment_author.user %}<a href="{% url 'forum_comment_edit' pk=forum.pk id=comment.id %}" data-toggle="tooltip" title="Edit Post"><span class="typcn typcn-pencil"></span></a>{% endif %}</li>
+                                </ul>
+                            </div>
+                            <div class="dj-forum-single-content-comment">
+                                {{ comment.comment_content|show_markdown|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- EOL -->
+
+       {% if request.user.is_authenticated and forum.is_closed != True %}
+       <div class="dj-forum-single-comment-form-wrapper">
+            <div class="container-narrow-3">
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ request.user.profile.profile_picture }}') no-repeat center center; background-size: cover;">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div>
+                            <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+                                <div class="form-group">
+                                    {{ form.comment_content|as_crispy_field|safe }}
+                                </div>
+
+                                <button class="button is-primary" type='submit'>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+       {% elif request.user.is_authenticated and forum.misc_closed != False %}
+
+       <div class="dj-forum-closed">
+           <h4><span class="typcn typcn-lock-closed" style="color: #f1c40f;"></span> thread closed</h4>
+       </div>
+
+        {% elif request.user.is_anonymous %}
+
+        <div class="dj-forum-closed">
+            <h4><a href="{% provider_login_url "github" process="login" %}"><span class="typcn typcn-key" style="color: #1abc9c;"></span> login untuk bergabung di diskusi</a></h4>
+        </div>
+
+       {% endif %}
+
+        <!--Include Footer-->
+        {% include "app_forum/partials/_pagination.html" %}
+        <!--EOC-->
+
+
+    </div>
+
+{% endblock %}

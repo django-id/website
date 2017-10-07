@@ -1,0 +1,128 @@
+{% extends "app_forum/main/forum_base.html" %}
+{% block title %}Forum - Django Indonesia{% endblock %}
+{% load humanize %}
+{% block content %}
+
+    <!-- HERO -->
+    <div class="dj-hero-wrapper">
+        <div class="container-narrow-2">
+            <div class="columns">
+                <div class="column">
+                    <div class="dj-hero-content">
+                        <h2><b>Selamat datang di komunitas <br/> Django Indonesia</b></h2>
+                        <p>
+                            <a class="button is-medium is-primary" href="{% url "forum_new" %}">
+                                <span class="icon">
+                                    <span class="typcn typcn-pencil"></span>
+                                </span>
+                                <span>Mulai Diskusi</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EOL -->
+
+    <!-- Include Doodle -->
+    {% include "app_forum/partials/_doodle.html" %}
+    <!--EOC-->
+
+    <!-- Forum List -->
+    <div class="dj-forum-list-wrapper">
+        <!-- STICKY THREAD -->
+        <div class="container-narrow-2">
+            <div class="columns">
+                <div class="column">
+                    <div class="dj-forum-list-content">
+                        {% for forum in forum_list_sticky %}
+                            <a href="{% url 'forum_single' pk=forum.pk %}">
+                                <div class="dj-forum-list-card card">
+                                    <div class="card-body">
+                                        <div class="columns">
+                                            <div class="column is-narrow">
+                                                <div class="dj-forum-list-avatar">
+                                                    <div class="dj-author-avatar" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ forum.forum_author.profile_picture }}') no-repeat center center; background-size: cover;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="column">
+                                                <div class="dj-forum-list-title">
+                                                    <h1 class="is-small"><span class="dj-sticky-title">[STICKY]</span> <span class="dj-forum-category-{{ forum.forum_category }}">[{{ forum.forum_category }}]</span> {{ forum.forum_title }} <span class="typcn typcn-flash"></span></h1>
+                                                    <p><span class="typcn typcn-arrow-back"></span> <strong>{{ forum.latest_comment_author }}</strong> replied {{ forum.latest_comment_date|naturaltime }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="column is-narrow">
+                                                <div class="dj-forum-list-count">
+                                                    <p><span class="typcn typcn-messages"></span> {{ forum.forum_comments.count }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- EOL -->
+
+        <!-- ORDINARY THREAD -->
+        <div class="container-narrow-2">
+            <div class="columns">
+                <div class="column">
+                    <div class="dj-forum-list-content">
+                        {% for forum in forum_list %}
+                            <a href="{% url 'forum_single' pk=forum.pk %}">
+                                <div class="dj-forum-list-card card">
+                                    <div class="card-body">
+                                        <div class="columns">
+                                            <div class="column is-narrow">
+                                                <div class="dj-forum-list-avatar">
+                                                    <div class="dj-author-avatar" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ forum.forum_author.profile_picture }}') no-repeat center center; background-size: cover;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="column">
+                                                <div class="dj-forum-list-title">
+                                                    <h1 class="is-small"><span class="dj-forum-category-{{ forum.forum_category }}">[{{ forum.forum_category }}]</span> {{ forum.forum_title }}</h1>
+                                                    {% if forum.forum_comments.count != 0 %}
+                                                    <p><span class="typcn typcn-arrow-back"></span> <strong>{{ forum.latest_comment_author }}</strong> replied {{ forum.latest_comment_date|naturaltime }}</p>
+                                                    {% else %}
+                                                    <p><span class="typcn typcn-arrow-back"></span> No reply yet...</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="column is-narrow">
+                                                <div class="dj-forum-list-count">
+                                                    <p><span class="typcn typcn-messages"></span> {{ forum.forum_comments.count }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- EOL -->
+    </div>
+    <!-- EOL -->
+
+    <!-- PAGINATION -->
+    <div class="dj-forum-list-pagination-wrapper">
+        <div class="container-narrow-2">
+            <div class="columns">
+                <div class="column">
+                    <!--Include Footer-->
+                    {% include "app_forum/partials/_pagination.html" %}
+                    <!--EOC-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EOL -->
+
+{% endblock %}

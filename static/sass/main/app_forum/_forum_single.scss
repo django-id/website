@@ -1,0 +1,145 @@
+// FORUM SINGLE THREAD
+
+.dj-forum-single-wrapper {
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid $dj-color-grey;
+
+  .dj-forum-single-heading {
+
+    text-align: center;
+    padding-bottom: 30px;
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .dj-forum-single-author-wrapper {
+      text-align: center;
+      padding-left: 47.5%;
+      padding-right: 47.5%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.dj-forum-single-content-wrapper {
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  p {
+    font-size: 1em;
+  }
+
+  .dj-forum-single-box {
+    border: 1px solid #ecf0f1;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #7f8c8d;
+    height: auto;
+
+    .dj-forum-single-box-meta {
+
+      padding: 10px 20px;
+      background: #ecf0f1;
+
+      ul {
+        li {
+          display: inline-block;
+          padding-left: 20px;
+        }
+      }
+    }
+
+    .dj-forum-single-content {
+      padding: 30px 50px;
+      color: #636b6f;
+      overflow: hidden;
+      line-height: 30px;
+      word-wrap: break-word;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        padding-bottom: 20px;
+      }
+
+      p {
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+.dj-forum-single-comments-wrapper {
+  padding-bottom: 30px;
+
+  .dj-forum-single-box-comment {
+
+    border: 1px solid #ecf0f1;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #7f8c8d;
+    height: auto;
+
+    .dj-forum-single-box-meta-comment {
+      padding: 10px 20px;
+      background: #ecf0f1;
+
+      ul {
+        li {
+          display: inline-block;
+          padding-left: 20px;
+          font-size: 1em;
+        }
+      }
+    }
+
+    .dj-forum-single-content-comment {
+      padding: 30px 50px;
+      color: #636b6f;
+      overflow: hidden;
+      line-height: 30px;
+      word-wrap: break-word;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        padding-bottom: 20px;
+      }
+
+      p {
+        padding-bottom: 15px;
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+.dj-forum-single-comment-form-wrapper {
+  padding-bottom: 50px;
+}
+
+.dj-forum-single-body-wrapper {
+  padding-top: 50px;
+  background-color: $dj-color-grey-light;
+
+  .dj-forum-closed {
+    text-align: center;
+    padding-bottom: 50px;
+
+    h4 {
+      font-weight: 700;
+      color: #636b6f;
+    }
+  }
+}

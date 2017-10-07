@@ -1,0 +1,54 @@
+{% extends "app_forum/main/forum_base.html" %}
+{% block title %}Member edit - Django Indonesia{% endblock %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <!-- Include Doodle -->
+    {% include "app_forum/partials/_doodle.html" %}
+    <!--EOC-->
+
+    <div class="dj-author-edit-wrapper">
+        <div class="container-narrow-2">
+            <div class="columns">
+                <div class="column">
+                    <div>
+                        <form action="" enctype="multipart/form-data" method="post">{% csrf_token %}
+                            <div class="dj-author-avatar-big-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ author.profile_picture }}') no-repeat center center;
+                                background-size: cover;">
+                            </div>
+                            <div class="field">
+                                <p class="control ">
+                                    {{ form.profile_picture|as_crispy_field }}
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    {{ form.profile_name|as_crispy_field }}
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    {{ form.profile_location|as_crispy_field }}
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    {{ form.profile_email|as_crispy_field }}
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    {{ form.profile_github|as_crispy_field }}
+                                </p>
+                            </div>
+                            <br />
+                            <button class="button is-primary" type='submit'>Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

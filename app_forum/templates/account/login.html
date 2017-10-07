@@ -1,0 +1,31 @@
+{% extends "app_forum/main/forum_base.html" %}
+{% load i18n %}
+{% load socialaccount %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+    <!-- Include Doodle -->
+    {% include "app_forum/partials/_doodle.html" %}
+    <!--EOC-->
+
+    <div class="dj-auth-wrapper">
+        <div class="container-narrow-2">
+            <div class="columns">
+                <div class="column">
+                    <div class="dj-auth-box">
+                        <p class="control" style="text-align: center;">
+                            <a class="button is-large is-dark" href="{% provider_login_url "github" process="login" %}">
+                                <span class="icon">
+                                    <span class="typcn typcn-social-github"></span>
+                                </span>
+                                <span>Login with Github</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
