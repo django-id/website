@@ -14,7 +14,7 @@
             <div class="columns">
                 <div class="column">
                     <div class="dj-forum-single-heading">
-                        <h1>[{{ forum.forum_category }}] {{ forum.forum_title }}</h1>
+                        <h1>{{ forum.forum_title }}</h1>
                         <div class="dj-forum-single-author-wrapper">
                              {% if forum.forum_author.profile_picture %}
                             <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ forum.forum_author.profile_picture }}') no-repeat center center; background-size: cover;"></div>
