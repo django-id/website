@@ -2,7 +2,7 @@ from datetime import datetime
 from .models import Forum, Comment
 from app_author.models import Profile
 from .forms import ThreadForm, CommentForm
-from django.contrib.auth.views import redirect_to_login
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -95,7 +95,7 @@ def forum_edit_view(request, pk):
             forum.save()
             return redirect('forum_single', pk=forum.pk)
     elif request.user != forum.forum_author.user:
-        return redirect('forum_list')
+        raise PermissionDenied
     else:
         form = ThreadForm(instance=forum)
     context = {'forum': forum, 'form': form}
@@ -124,7 +124,7 @@ def forum_comment_edit_view(request, pk, id):
             comment.save()
             return redirect('forum_single', pk=forum.pk)
     elif request.user != comment.comment_author.user:
-        return redirect('forum_list')
+        raise PermissionDenied
     else:
         form = CommentForm(instance=comment)
     context = {'forum': forum, 'comment': comment, 'form': form}
