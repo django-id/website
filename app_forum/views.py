@@ -1,11 +1,13 @@
 from datetime import datetime
-from .models import Forum, Comment
+
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect, get_object_or_404
+
 from app_author.models import Profile
 from .forms import ThreadForm, CommentForm
-from django.core.exceptions import PermissionDenied
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Forum, Comment
 
 
 def forum_list_view(request):
@@ -69,7 +71,7 @@ def forum_new_view(request):
             thread.forum_author = Profile.objects.get(user=request.user)
             thread.misc_created = datetime.now()
             thread.save()
-            return redirect('forum_list')
+            return redirect('forum:forum_list')
     else:
         form = ThreadForm()
     context = {'form': form}

@@ -22,7 +22,7 @@
                             <div class="dj-author-avatar-rounded" style="background: url('{% static "img/you-face.gif" %}') no-repeat center center; background-size: cover;"></div>
                             {% endif %}
                         </div>
-                        <a href="{% url "author_single" slug=forum.forum_author.slug %}" class=""><span class="typcn typcn-user"></span> {{ forum.forum_author }}</a>
+                        <a href="{% url "author:author_single" slug=forum.forum_author.slug %}" class=""><span class="typcn typcn-user"></span> {{ forum.forum_author }}</a>
                     </div>
                 </div>
             </div>
@@ -68,10 +68,10 @@
                     <div class="column is-narrow" style="text-align: center;">
                         {% if comment.comment_author.profile_picture %}
                         <div class="dj-author-avatar-rounded" style="background: url('{{ request.META.HTTP_NAME }}/media/{{ comment.comment_author.profile_picture }}') no-repeat center center; background-size: cover;"></div>
-                        <a href="{% url 'author_single' slug=comment.comment_author.slug %}">{{ comment.comment_author }}</a>
+                        <a href="{% url 'author:author_single' slug=comment.comment_author.slug %}">{{ comment.comment_author }}</a>
                         {% else %}
                         <div class="dj-author-avatar-rounded" style="background: url('{% static "img/you-face.gif" %}') no-repeat center center; background-size: cover;"></div>
-                        <a href="{% url 'author_single' slug=comment.comment_author.slug %}">{{ comment.comment_author }}</a>
+                        <a href="{% url 'author:author_single' slug=comment.comment_author.slug %}">{{ comment.comment_author }}</a>
                         {% endif %}
                     </div>
                     <div class="column">
@@ -80,7 +80,7 @@
                                 <ul>
                                     <li><span class="typcn typcn-time"></span>created: {{ comment.is_created|naturaltime }}</li>
                                     <li><span class="typcn typcn-edit"></span>modified: {{ comment.is_modified|naturaltime }}</li>
-                                    <li class="float-right">{% if user.is_authenticated and request.user == comment.comment_author.user %}<a href="{% url 'forum_comment_edit' pk=forum.pk id=comment.id %}" data-toggle="tooltip" title="Edit Post"><span class="typcn typcn-pencil"></span></a>{% endif %}</li>
+                                    <li class="float-right">{% if user.is_authenticated and request.user == comment.comment_author.user %}<a href="{% url 'forum:forum_comment_edit' pk=forum.pk id=comment.id %}" data-toggle="tooltip" title="Edit Post"><span class="typcn typcn-pencil"></span></a>{% endif %}</li>
                                 </ul>
                             </div>
                             <div class="dj-forum-single-content-comment">

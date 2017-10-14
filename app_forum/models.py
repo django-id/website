@@ -1,8 +1,8 @@
-import datetime
-from django.db import models
 from autoslug import AutoSlugField
-from app_author.models import Profile
+from django.db import models
 from markdownx.models import MarkdownxField
+
+from app_author.models import Profile
 
 
 class Category(models.Model):

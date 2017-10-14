@@ -14,19 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
 from django.conf import settings
-from markdownx import urls as markdownx
 from django.conf.urls import include, url
 from django.conf.urls.static import static
+from django.contrib import admin
+from markdownx import urls as markdownx
 
 urlpatterns = [
     # Main App
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('app_forum.urls')),
-    url(r'^author/', include('app_author.urls')),
+    url(r'^', include('app_forum.urls', namespace='forum')),
+    url(r'^author/', include('app_author.urls', namespace='author')),
 
     # 3rd-party App
     url(r'^markdownx/', include(markdownx)),
     url(r'^accounts/', include('allauth.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

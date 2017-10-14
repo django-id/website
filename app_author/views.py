@@ -1,10 +1,10 @@
-from .models import Profile
-from .forms import ProfileForm
-from app_forum.models import Forum, Comment
-from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect, get_object_or_404
+
+from app_forum.models import Forum, Comment
+from .forms import ProfileForm
+from .models import Profile
 
 
 def author_single_view(request, slug):
