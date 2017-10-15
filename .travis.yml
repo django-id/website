@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.6"
+
+# Command to install dependency.
+install: "pip install -r requirements.txt"
+
+# Command to run tests.
+script: python manage.py test

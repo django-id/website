@@ -63,7 +63,7 @@
                                 <div class="dj-author-activity-item">
                                     <ul>
                                         {% for author_forum in author_forum_list %}
-                                            <li><span class="typcn typcn-arrow-forward"></span> <a href="{% url "forum_single" pk=author_forum.pk %}">{{ author_forum.forum_title }}</a></li>
+                                            <li><span class="typcn typcn-arrow-forward"></span> <a href="{% url "forum:forum_single" pk=author_forum.pk %}">{{ author_forum.forum_title }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -78,7 +78,7 @@
                                 </div>
                                 {% for author_forum in author_comments %}
                                 <div class="dj-author-activity-item">
-                                    <span><a href="{% url 'author_single' slug=author.slug %}">{{ author_forum.comment_author }}</a> left a reply on <a href="{% url 'forum_single' pk=author_forum.forum.id %}">{{ author_forum.forum.forum_title }}</a> {{ author_forum.created_date|naturaltime }}</span>
+                                    <span><a href="{% url 'author_single' slug=author.slug %}">{{ author_forum.comment_author }}</a> left a reply on <a href="{% url 'forum:forum_single' pk=author_forum.forum.id %}">{{ author_forum.forum.forum_title }}</a> {{ author_forum.created_date|naturaltime }}</span>
                                     <p>{{ author_forum.comment_content|show_markdown|safe }}</p>
                                 </div>
                                 {% endfor %}
