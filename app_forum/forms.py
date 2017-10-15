@@ -1,6 +1,7 @@
 from django import forms
-from .models import Forum, Comment
 from markdownx.fields import MarkdownxFormField
+
+from .models import Forum, Comment
 
 
 class ThreadForm(forms.ModelForm):

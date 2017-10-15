@@ -12,7 +12,7 @@
                     <div class="dj-hero-content">
                         <h2><b>Selamat datang di komunitas <br/> Django Indonesia</b></h2>
                         <p>
-                            <a class="button is-medium is-primary" href="{% url "forum_new" %}">
+                            <a class="button is-medium is-primary" href="{% url "forum:forum_new" %}">
                                 <span class="icon">
                                     <span class="typcn typcn-pencil"></span>
                                 </span>
@@ -50,7 +50,7 @@
                 <div class="column">
                     <div class="dj-forum-list-content">
                         {% for forum in forum_list_sticky %}
-                            <a href="{% url 'forum_single' pk=forum.pk %}">
+                            <a href="{% url 'forum:forum_single' pk=forum.pk %}">
                                 <div class="dj-forum-list-card card">
                                     <div class="card-body">
                                         <div class="columns">
@@ -91,7 +91,7 @@
                 <div class="column">
                     <div class="dj-forum-list-content">
                         {% for forum in forum_list %}
-                            <a href="{% url 'forum_single' pk=forum.pk %}">
+                            <a href="{% url 'forum:forum_single' pk=forum.pk %}">
                                 <div class="dj-forum-list-card card">
                                     <div class="card-body">
                                         <div class="columns">

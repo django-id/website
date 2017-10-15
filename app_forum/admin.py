@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from app_forum.models import Category, Comment, Forum
 
 

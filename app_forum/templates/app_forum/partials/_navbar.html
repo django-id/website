@@ -34,13 +34,13 @@
                                 Halo, {{ request.user.username }}
                             </a>
                             <div class="navbar-dropdown is-boxed">
-                                 <a class="navbar-item" href="{% url 'author_single' slug=request.user.username %}">
+                                 <a class="navbar-item" href="{% url 'author:author_single' slug=request.user.username %}">
                                     Lihat Profile
                                 </a>
-                                <a class="navbar-item" href="{% url 'author_edit' slug=request.user.username %}">
+                                <a class="navbar-item" href="{% url 'author:author_edit' slug=request.user.username %}">
                                     Edit Profile
                                 </a>
-                                <a class="navbar-item" href="{% url "forum_new" %}">
+                                <a class="navbar-item" href="{% url "forum:forum_new" %}">
                                     Buat Thread Baru
                                 </a>
                                 <hr class="navbar-divider">

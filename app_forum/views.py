@@ -1,7 +1,6 @@
-from datetime import datetime
-from .models import Forum, Comment
-from django.db.models import Count
+from datetime import
 from app_author.models import Profile
+from .models import Forum, Comment
 from .forms import ThreadForm, CommentForm
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
@@ -70,7 +69,7 @@ def forum_new_view(request):
             thread.forum_author = Profile.objects.get(user=request.user)
             thread.misc_created = datetime.now()
             thread.save()
-            return redirect('forum_list')
+            return redirect('forum:forum_list')
     else:
         form = ThreadForm()
     context = {'form': form}
