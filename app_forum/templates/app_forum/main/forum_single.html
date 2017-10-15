@@ -47,7 +47,7 @@
                                     <li><span class="typcn typcn-time"></span> {{ forum.is_created|naturaltime }}</li>
                                     <li><span class="typcn typcn-tag"></span> {{ forum.forum_category }}</li>
                                     <li><span class="typcn typcn-messages"></span> {{ forum.forum_comments.count }}</li>
-                                    <li class="float-right">{% if user.is_authenticated and request.user == forum.forum_author.user %}<a href="{% url "forum_edit" pk=forum.pk %}" data-toggle="tooltip" title="Edit Post"><span class="typcn typcn-pencil"></span></a>{% endif %}</li>
+                                    <li class="float-right">{% if user.is_authenticated and request.user == forum.forum_author.user %}<a href="{% url "forum:forum_edit" pk=forum.pk %}" data-toggle="tooltip" title="Edit Post"><span class="typcn typcn-pencil"></span></a>{% endif %}</li>
                                 </ul>
                             </div>
                             <div class="dj-forum-single-content">
