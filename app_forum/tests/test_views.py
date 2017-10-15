@@ -13,7 +13,7 @@ class ForumViewTestCase(TestCase):
         self.factory = RequestFactory()
 
     def test_retrieve_forum_list_view(self):
-        url = reverse('forum:forum_list')
+        url = reverse('forum_list')
         request = self.factory.get(path=url)
         response = forum_list_view(request)
         self.assertEqual(response.status_code, 200)
@@ -25,7 +25,7 @@ class ForumViewTestCase(TestCase):
             password='testing123',
         )
         category = Category.objects.create(category_title='Testing')
-        url = reverse('forum:forum_new')
+        url = reverse('forum_new')
         payload = {
             'forum_title': 'Test new thread',
             'forum_category': category.pk,
@@ -36,7 +36,7 @@ class ForumViewTestCase(TestCase):
         request.user = user
         response = forum_new_view(request)
         response.client = Client()
-        self.assertRedirects(response, reverse('forum:forum_list'))
+        self.assertRedirects(response, reverse('forum_list'))
 
     def test_retrieve_new_thread_form_view(self):
         user = User.objects.create_user(
@@ -44,7 +44,7 @@ class ForumViewTestCase(TestCase):
             email='tester@gmail.com',
             password='testing123',
         )
-        url = reverse('forum:forum_new')
+        url = reverse('forum_new')
 
         request = self.factory.get(path=url)
         request.user = user
@@ -65,7 +65,7 @@ class ForumViewTestCase(TestCase):
             forum_category=category,
             forum_content='Lorep insum dolor amet.',
         )
-        url = reverse('forum:forum_single', args=[forum.pk])
+        url = reverse('forum_single', args=[forum.pk])
         request = self.factory.get(path=url)
         response = forum_single_view(request, forum.pk)
         self.assertEqual(response.status_code, 200)

@@ -1,4 +1,4 @@
-from datetime import
+from datetime import datetime
 from app_author.models import Profile
 from .models import Forum, Comment
 from .forms import ThreadForm, CommentForm
@@ -49,7 +49,7 @@ def forum_single_view(request, pk):
             comment.created_date = datetime.now()
             comment.forum = forum
             comment.save()
-            return redirect('forum_single', pk=forum.pk)
+            return redirect('forum:forum_single', pk=forum.pk)
     else:
         return render(request, template, context)
 
@@ -93,7 +93,7 @@ def forum_edit_view(request, pk):
             forum.forum_author = Profile.objects.get(user=request.user)
             forum.is_created = datetime.now()
             forum.save()
-            return redirect('forum_single', pk=forum.pk)
+            return redirect('forum:forum_single', pk=forum.pk)
     elif request.user != forum.forum_author.user:
         raise PermissionDenied
     else:
@@ -122,7 +122,7 @@ def forum_comment_edit_view(request, pk, id):
             comment.created_date = datetime.now()
             comment.forum = forum
             comment.save()
-            return redirect('forum_single', pk=forum.pk)
+            return redirect('forum:forum_single', pk=forum.pk)
     elif request.user != comment.comment_author.user:
         raise PermissionDenied
     else:

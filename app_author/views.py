@@ -43,9 +43,9 @@ def author_edit_view(request, slug):
         if form.is_valid():
             author = form.save(commit=False)
             author.save()
-            return redirect('author_single', slug=slug)
+            return redirect('author:author_single', slug=slug)
     elif request.user != author.user:
-        return redirect('forum_list')
+        return redirect('forum:forum_list')
     else:
         form = ProfileForm(instance=author)
     return render(request, 'app_author/author_edit.html', {'author': author, 'form': form})
