@@ -1,5 +1,6 @@
 from datetime import datetime
 from .models import Forum, Comment
+from django.db.models import Count
 from app_author.models import Profile
 from .forms import ThreadForm, CommentForm
 from django.core.exceptions import PermissionDenied

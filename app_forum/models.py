@@ -1,4 +1,3 @@
-import datetime
 from django.db import models
 from autoslug import AutoSlugField
 from app_author.models import Profile
@@ -134,6 +133,9 @@ class Comment(models.Model):
         null=True,
         blank=True
     )
+
+    # def comment_count(self):
+    #     return Comment.objects.count()
 
     def __str__(self):
         return self.comment_content

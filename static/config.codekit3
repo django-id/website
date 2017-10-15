@@ -143,6 +143,17 @@
 		"oAP": "\/fonts\/typicons.woff",
 		"oF": 0
 		},
+	"\/img\/favicon.png": {
+		"ft": 32768,
+		"iS": 5586,
+		"oA": 0,
+		"oAP": "\/img\/favicon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/img\/icons8-facebook_filled.svg": {
 		"ft": 2097152,
 		"miP": 0,

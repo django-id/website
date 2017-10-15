@@ -1,10 +1,9 @@
 from .models import Profile
+from django.db.models import Count
 from .forms import ProfileForm
 from app_forum.models import Forum, Comment
-from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def author_single_view(request, slug):
@@ -15,18 +14,18 @@ def author_single_view(request, slug):
     :return:
     """
     author = get_object_or_404(Profile, slug=slug)
-    author_forum_list = Forum.objects.filter(forum_author=author.id).order_by("-is_created")
-    author_comments = Comment.objects.filter(comment_author=author.id).order_by("-is_created")
-    paginator = Paginator(author_comments, 3)
-    page = request.GET.get('page', 1)
-    try:
-        author_comments = paginator.page(page)
-    except PageNotAnInteger:
-        author_comments = paginator.page(1)
-    except EmptyPage:
-        author_comments = paginator.page(paginator.num_pages)
+    author_forum_list = Forum.objects.filter(forum_author=author.id).order_by("-is_created")[:10]
+    author_comments = Comment.objects.filter(comment_author=author.id).order_by("-is_created")[:10]
+    total_forums = Forum.objects.filter(forum_author=author.id).annotate(num_comments=Count('forum_author'))
+    total_comments = Comment.objects.filter(comment_author=author.id).annotate(num_comments=Count('comment_author'))
     template = 'app_author/author_single.html'
-    context = {'author': author, 'author_forum_list': author_forum_list, 'author_comments': author_comments}
+    context = {
+        'author': author,
+        'author_forum_list': author_forum_list,
+        'author_comments': author_comments,
+        'total_forums': total_forums,
+        'total_comments': total_comments
+    }
     return render(request, template, context)
 
 
