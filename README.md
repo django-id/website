@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-<h4 align="center">Clean and simple forum app made for Django-id Community. Built on top of <a href="https://www.djangoproject.com/" target="_blank">Django</a> and <a href="">Markdown</a>".</h4>
+<h4 align="center">Clean and simple forum app made for Django-id Community. Built on top of <a href="https://www.djangoproject.com/" target="_blank">Django</a> and <a href="">Markdown</a>.</h4>
 
 <p align="center">
   <a href="https://badge.fury.io/js/electron-markdownify">
@@ -33,6 +33,7 @@
 * Built on top of Django Framework and Python 3.X
 * GitHub Flavored Markdown  
 * Syntax highlighting
+* Use [Bulma](https://bulma.io/), modern front-end framework
 * [Pygments](http://pygments.org/) Support
 * Simple and clean UI/UX
 * ~~No-bullshit~~ No-nonsense, get the job done.
@@ -89,6 +90,7 @@ This software uses code from several open source packages.
 - Create user mention/tagging feature
 - Create notification system
 - Create proper paginations
+- Fixing its responsiveness
 - Polishing its UI/UX
 - ...
 
