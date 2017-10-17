@@ -33,6 +33,7 @@
 * Built on top of Django Framework and Python 3.X
 * GitHub Flavored Markdown  
 * Syntax highlighting
+* Use [SASS](http://sass-lang.com/)
 * Use [Bulma](https://bulma.io/), modern front-end framework
 * [Pygments](http://pygments.org/) Support
 * Simple and clean UI/UX
