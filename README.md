@@ -49,6 +49,9 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [virt
 # Create virtual environment using virtualenv
 $ virtualenv -p python3 envname
 
+# Go into virtual environment folder
+$ cd envname
+
 # Activate virtualenv
 $ source bin/activate
 
