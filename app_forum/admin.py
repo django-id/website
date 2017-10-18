@@ -16,7 +16,6 @@ class ForumAdmin(admin.ModelAdmin):
     ]
 
     list_filter = (
-        'forum_author',
         'is_created',
         'is_hot',
     )
