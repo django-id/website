@@ -71,7 +71,10 @@ $ python manage.py makemigrations && python manage.py migrate
 $ python manage.py runserver
 ```
 
-Note: If those commands is not working, please open issue with detailed error messages.
+Note:<br>
+If those commands is not working, please open issue with detailed error messages.<br>
+Do not forget to rename from `settings_test.py` to `settings.py`
+
 
 ## Download
 
