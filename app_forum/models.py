@@ -1,7 +1,7 @@
 from django.db import models
-from autoslug import AutoSlugField
-from app_author.models import Profile
 from markdownx.models import MarkdownxField
+
+from app_author.models import Profile
 
 
 class Category(models.Model):
@@ -19,16 +19,19 @@ class Category(models.Model):
         null=False
     )
 
-    slug = AutoSlugField(
-        populate_from='category_title',
-        unique=True
-    )
+    slug = models.SlugField()
 
     class Meta:
         verbose_name_plural = "Categories"
 
     def __str__(self):
         return str(self.category_title)
+
+    def save(self, **kwargs):
+        if not self.slug:
+            from djangoid.utils import get_unique_slug
+            self.slug = get_unique_slug(instance=self, field='category_title')
+        super(Category, self).save(**kwargs)
 
     @models.permalink
     def get_absolute_url(self):
@@ -59,6 +62,7 @@ class Forum(models.Model):
 
     forum_category = models.ForeignKey(
         'Category',
+        on_delete=models.CASCADE,
         verbose_name=u'Category',
     )
 
@@ -109,6 +113,7 @@ class Comment(models.Model):
     """
     forum = models.ForeignKey(
         'Forum',
+        on_delete=models.CASCADE,
         related_name='forum_comments'
     )
 
@@ -130,12 +135,7 @@ class Comment(models.Model):
 
     is_modified = models.DateTimeField(
         auto_now=True,
-        null=True,
-        blank=True
     )
-
-    # def comment_count(self):
-    #     return Comment.objects.count()
 
     def __str__(self):
         return self.comment_content

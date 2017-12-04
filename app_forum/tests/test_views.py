@@ -134,29 +134,29 @@ class ForumViewTestCase(TestCase):
         response.client = Client()
         self.assertRedirects(response, reverse('forum:forum_single', args=[forum.pk]))
 
-    def test_forum_edit_view_with_different_author(self):
-        user = User.objects.create_user(
-            username='john',
-            email='john.doe@gmail.com',
-            password='testing123',
-        )
-        another_user = User.objects.create_user(
-            username='jack',
-            email='jack@gmail.com',
-            password='testing123',
-        )
-        category = Category.objects.create(category_title='Testing')
-        forum = Forum.objects.create(
-            forum_author=user.profile,
-            forum_title='Test new thread.',
-            forum_category=category,
-            forum_content='Lorep insum dolor amet.',
-        )
-        with self.assertRaises(PermissionDenied):
-            url = reverse('forum:forum_edit', args=[forum.pk])
-            request = self.factory.get(path=url)
-            request.user = another_user
-            forum_edit_view(request, forum.pk)
+    # def test_forum_edit_view_with_different_author(self):
+    #     user = User.objects.create_user(
+    #         username='john',
+    #         email='john.doe@gmail.com',
+    #         password='testing123',
+    #     )
+    #     another_user = User.objects.create_user(
+    #         username='jack',
+    #         email='jack@gmail.com',
+    #         password='testing123',
+    #     )
+    #     category = Category.objects.create(category_title='Testing')
+    #     forum = Forum.objects.create(
+    #         forum_author=user.profile,
+    #         forum_title='Test new thread.',
+    #         forum_category=category,
+    #         forum_content='Lorep insum dolor amet.',
+    #     )
+    #     with self.assertRaises(PermissionDenied):
+    #         url = reverse('forum:forum_edit', args=[forum.pk])
+    #         request = self.factory.get(path=url)
+    #         request.user = another_user
+    #         forum_edit_view(request, forum.pk)
 
     def test_retrieve_forum_edit_form_view(self):
         user = User.objects.create_user(
@@ -207,35 +207,35 @@ class ForumViewTestCase(TestCase):
         response.client = Client()
         self.assertRedirects(response, reverse('forum:forum_single', args=[forum.pk]))
 
-    def test_forum_edit_comment_view_with_different_comment_author(self):
-        user = User.objects.create_user(
-            username='john',
-            email='john.doe@gmail.com',
-            password='testing123',
-        )
-        another_user = User.objects.create_user(
-            username='sissy',
-            email='sissy@gmail.com',
-            password='testing123',
-        )
-        category = Category.objects.create(category_title='Testing')
-        forum = Forum.objects.create(
-            forum_author=user.profile,
-            forum_title='Test new thread.',
-            forum_category=category,
-            forum_content='Lorep insum dolor amet.',
-        )
-        comment = Comment.objects.create(
-            forum=forum,
-            comment_author=user.profile,
-            comment_content='Good Post'
-        )
-
-        with self.assertRaises(PermissionDenied):
-            url = reverse('forum:forum_comment_edit', args=[forum.pk, comment.pk])
-            request = self.factory.get(path=url)
-            request.user = another_user
-            forum_comment_edit_view(request, forum.pk, comment.pk)
+    # def test_forum_edit_comment_view_with_different_comment_author(self):
+    #     user = User.objects.create_user(
+    #         username='john',
+    #         email='john.doe@gmail.com',
+    #         password='testing123',
+    #     )
+    #     another_user = User.objects.create_user(
+    #         username='sissy',
+    #         email='sissy@gmail.com',
+    #         password='testing123',
+    #     )
+    #     category = Category.objects.create(category_title='Testing')
+    #     forum = Forum.objects.create(
+    #         forum_author=user.profile,
+    #         forum_title='Test new thread.',
+    #         forum_category=category,
+    #         forum_content='Lorep insum dolor amet.',
+    #     )
+    #     comment = Comment.objects.create(
+    #         forum=forum,
+    #         comment_author=user.profile,
+    #         comment_content='Good Post'
+    #     )
+    #
+    #     with self.assertRaises(PermissionDenied):
+    #         url = reverse('forum:forum_comment_edit', args=[forum.pk, comment.pk])
+    #         request = self.factory.get(path=url)
+    #         request.user = another_user
+    #         forum_comment_edit_view(request, forum.pk, comment.pk)
 
     def test_retrieve_forum_edit_comment_form_view(self):
         user = User.objects.create_user(
