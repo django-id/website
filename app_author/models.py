@@ -1,6 +1,3 @@
-import datetime
-
-from autoslug import AutoSlugField
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -9,6 +6,8 @@ from django.dispatch import receiver
 
 
 # CUSTOM FILE SIZE VALIDATOR
+
+
 def validate_image(fieldfile_obj):
     """
     Limit image size upload
@@ -61,14 +60,9 @@ class Profile(models.Model):
         blank=True
     )
 
-    slug = AutoSlugField(
-        populate_from='user',
-        blank=False,
-        null=False
-    )
+    slug = models.SlugField()
 
     is_created = models.DateTimeField(
-        default=datetime.datetime.now,
         null=True,
         blank=True
     )
@@ -80,8 +74,11 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
 
-    # def get_absolute_url(self):
-    #     return reverse('author', args=[self.slug])
+    def save(self, **kwargs):
+        if not self.slug:
+            from djangoid.utils import get_unique_slug
+            self.slug = get_unique_slug(instance=self, field='profile_name')
+        super(Profile, self).save(**kwargs)
 
 
 @receiver(post_save, sender=User)

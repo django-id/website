@@ -1,11 +1,14 @@
 from datetime import datetime
-from app_author.models import Profile
-from .models import Forum, Comment
-from .forms import ThreadForm, CommentForm
-from django.core.exceptions import PermissionDenied
+
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+
+from app_author.models import Profile
+from .forms import ThreadForm, CommentForm
+from .models import Forum, Comment
 
 
 def forum_list_view(request):
@@ -91,7 +94,7 @@ def forum_edit_view(request, pk):
         if form.is_valid():
             forum = form.save(commit=False)
             forum.forum_author = Profile.objects.get(user=request.user)
-            forum.is_created = datetime.now()
+            forum.is_created = timezone.now()
             forum.save()
             return redirect('forum:forum_single', pk=forum.pk)
     elif request.user != forum.forum_author.user:
