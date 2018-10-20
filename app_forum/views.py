@@ -39,7 +39,10 @@ def forum_single_view(request, pk):
     :param pk:
     :return:
     """
-    forum = get_object_or_404(Forum, pk=pk)
+    try:
+        forum = Forum.objects.get(pk=pk)
+    except Forum.DoesNotExist:
+        return redirect('forum:forum_list')
     forum_comments = Comment.objects.filter(forum=forum.id)
     form = CommentForm()
     template = 'app_forum/main/forum_single.html'
@@ -87,7 +90,10 @@ def forum_edit_view(request, pk):
     :param pk:
     :return:
     """
-    forum = get_object_or_404(Forum, pk=pk)
+    try:
+        forum = Forum.objects.get(pk=pk)
+    except Forum.DoesNotExist:
+        return redirect('forum:forum_list')
     template = 'app_forum/main/forum_edit.html'
     if request.method == "POST":
         form = ThreadForm(request.POST, instance=forum)
@@ -114,8 +120,11 @@ def forum_comment_edit_view(request, pk, id):
     :param id:
     :return:
     """
-    forum = get_object_or_404(Forum, pk=pk)
-    comment = get_object_or_404(Comment, id=id)
+    try:
+        forum = get_object_or_404(Forum, pk=pk)
+        comment = get_object_or_404(Comment, id=id)
+    except (Forum.DoesNotExist, Comment.DoesNotExist):
+        return redirect('forum:forum_list')
     template = 'app_forum/main/forum_comment_edit.html'
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
