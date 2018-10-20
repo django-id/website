@@ -71,6 +71,14 @@ $ python manage.py makemigrations && python manage.py migrate
 $ python manage.py runserver
 ```
 
+If you have docker installed. you can simply run following command to run with docker.
+
+```
+$ docker-compose build                  # Build docker images for the first time.
+$ docker-compose up                     # Running the project.
+$ docker-compose run web sh runtest.sh  # Run the test.
+```
+
 Note: If those commands is not working, please open issue with detailed error messages.
 
 ## Download
