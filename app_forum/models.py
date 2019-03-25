@@ -33,7 +33,6 @@ class Category(models.Model):
             self.slug = get_unique_slug(instance=self, field='category_title')
         super(Category, self).save(**kwargs)
 
-    @models.permalink
     def get_absolute_url(self):
         """
         Call Category Slug
@@ -99,7 +98,6 @@ class Forum(models.Model):
     def latest_comment_date(self):
         return self.forum_comments.latest('is_created').is_created
 
-    @models.permalink
     def get_absolute_url(self):
         """
         Call Forum ID
