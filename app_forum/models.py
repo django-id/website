@@ -33,7 +33,6 @@ class Category(models.Model):
             self.slug = get_unique_slug(instance=self, field='category_title')
         super(Category, self).save(**kwargs)
 
-    @models.permalink
     def get_absolute_url(self):
         """
         Call Category Slug
@@ -45,6 +44,10 @@ class Forum(models.Model):
     """
     Thread Model
     """
+
+    class Meta:
+        verbose_name_plural = "Title"
+
     forum_author = models.ForeignKey(
         Profile,
         related_name='user_forums',
@@ -99,7 +102,6 @@ class Forum(models.Model):
     def latest_comment_date(self):
         return self.forum_comments.latest('is_created').is_created
 
-    @models.permalink
     def get_absolute_url(self):
         """
         Call Forum ID
@@ -111,6 +113,10 @@ class Comment(models.Model):
     """
     Comment Model
     """
+
+    class Meta:
+        verbose_name_plural = "Comment"
+        
     forum = models.ForeignKey(
         'Forum',
         on_delete=models.CASCADE,
