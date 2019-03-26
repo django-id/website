@@ -44,6 +44,10 @@ class Forum(models.Model):
     """
     Thread Model
     """
+
+    class Meta:
+        verbose_name_plural = "Title"
+
     forum_author = models.ForeignKey(
         Profile,
         related_name='user_forums',
@@ -109,6 +113,10 @@ class Comment(models.Model):
     """
     Comment Model
     """
+
+    class Meta:
+        verbose_name_plural = "Comment"
+        
     forum = models.ForeignKey(
         'Forum',
         on_delete=models.CASCADE,
