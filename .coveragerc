@@ -1,0 +1,22 @@
+[run]
+omit =
+    */urls/*
+    */migrations/*
+    */tests/*
+    */__init__.py
+    */tests.py
+    */apps.py
+    */rss.py
+    */urls.py
+    */manage.py
+    */wsgi.py
+    */settings.py
+    */settings_test.py
+    venv/*
+ 
+[report]
+exclude_lines =
+    def __unicode__
+    if setttings.TESTING
+    def __repr__
+    def __str__

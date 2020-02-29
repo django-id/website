@@ -1,6 +1,9 @@
 djangoid/settings.py
 .idea/*
+.vscode/*
 .DS_Store
+venv
+db.sqlite3
 
 
 # Byte-compiled / optimized / DLL files
