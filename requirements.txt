@@ -5,8 +5,8 @@ Django==2.2.13
 django-allauth==0.33.0
 django-autoslug==1.9.3
 django-crispy-forms==1.7.0
-django-markdownx==2.0.22
-django-taggit==0.22.1
+django-markdownx
+django-taggit
 idna==2.6
 Markdown==2.6.9
 oauthlib==2.0.4
