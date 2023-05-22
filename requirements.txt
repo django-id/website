@@ -15,7 +15,7 @@ Pillow==9.3.0
 Pygments==2.7.4
 python3-openid==3.1.0
 pytz==2017.3
-requests==2.20.0
+requests==2.31.0
 requests-oauthlib==0.8.0
 urllib3==1.26.5
 coverage==4.4.1
