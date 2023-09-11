@@ -12,7 +12,7 @@ Markdown==2.6.9
 oauthlib==2.0.4
 olefile==0.44
 Pillow==9.3.0
-Pygments==2.7.4
+Pygments==2.15.0
 python3-openid==3.1.0
 pytz==2017.3
 requests==2.31.0
