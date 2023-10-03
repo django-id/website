@@ -17,5 +17,5 @@ python3-openid==3.1.0
 pytz==2017.3
 requests==2.31.0
 requests-oauthlib==0.8.0
-urllib3==1.26.5
+urllib3==1.26.17
 coverage==4.4.1
